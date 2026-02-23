@@ -1,0 +1,189 @@
+{
+  "info": {
+    "name": "Patient Management System API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "patients",
+      "item": [
+        {
+          "name": "Get All Patients (Empty)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/patients",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["patients"]
+            }
+          }
+        },
+        {
+          "name": "Add Patient (John Doe)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"John Doe\",\n  \"NIC\": \"123456789V\",\n  \"age\": 30,\n  \"address\": \"123 Main St\",\n  \"previousCaseHistory\": [\"Flu\", \"Cold\"]\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3000/patients",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["patients"]
+            }
+          }
+        },
+        {
+          "name": "Add Patient (Jane Smith)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Jane Smith\",\n  \"NIC\": \"987654321V\",\n  \"age\": 25,\n  \"address\": \"456 Oak Ave\",\n  \"previousCaseHistory\": [\"Asthma\"]\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3000/patients",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["patients"]
+            }
+          }
+        },
+        {
+          "name": "Get All Patients (With Data)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/patients",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["patients"]
+            }
+          }
+        },
+        {
+          "name": "Get Patient By ID (Exists)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/patients/1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["patients", "1"]
+            }
+          }
+        },
+        {
+          "name": "Get Patient By ID (Not Found)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/patients/999",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["patients", "999"]
+            }
+          }
+        },
+        {
+          "name": "Delete Patient By ID (Exists)",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/patients/1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["patients", "1"]
+            }
+          }
+        },
+        {
+          "name": "Delete Patient By ID (Not Found)",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/patients/999",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["patients", "999"]
+            }
+          }
+        },
+        {
+          "name": "Change Patient Address (Exists)",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"address\": \"789 Pine Rd\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3000/patients/2/address",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["patients", "2", "address"]
+            }
+          }
+        },
+        {
+          "name": "Change Patient Address (Not Found)",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"address\": \"1010 Elm St\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3000/patients/999/address",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["patients", "999", "address"]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
