@@ -1,0 +1,20 @@
+{
+  "name": "patient-management-system",
+  "version": "1.0.0",
+  "description": "(Simple nodeJS patient management system for a take home activity)",
+  "homepage": "https://github.com/AmzalFoumi/patient-management-system#readme",
+  "bugs": {
+    "url": "https://github.com/AmzalFoumi/patient-management-system/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AmzalFoumi/patient-management-system.git"
+  },
+  "license": "ISC",
+  "author": "Amzal Foumi",
+  "type": "commonjs",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
