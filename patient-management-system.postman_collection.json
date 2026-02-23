@@ -184,6 +184,166 @@
           }
         }
       ]
+    },
+    {
+      "name": "appointments",
+      "item": [
+        {
+          "name": "Add Appointment (Success)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"patientID\": 1,\n  \"date\": \"2026-03-10\",\n  \"time\": \"09:00\",\n  \"doctorName\": \"Dr. Silva\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3000/appointments",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["appointments"]
+            }
+          }
+        },
+        {
+          "name": "Add Appointment (Missing Fields)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"patientID\": 1,\n  \"date\": \"2026-03-10\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3000/appointments",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["appointments"]
+            }
+          }
+        },
+        {
+          "name": "Get Appointments By Patient ID (Exists)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/appointments/patient/1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["appointments", "patient", "1"]
+            }
+          }
+        },
+        {
+          "name": "Get Appointments By Patient ID (No Appointments)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/appointments/patient/999",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["appointments", "patient", "999"]
+            }
+          }
+        },
+        {
+          "name": "Check Doctor Availability (Available)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/appointments/doctor-availability?doctorName=Dr. Silva&date=2026-03-11&time=10:00",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["appointments", "doctor-availability"],
+              "query": [
+                { "key": "doctorName", "value": "Dr. Silva" },
+                { "key": "date", "value": "2026-03-11" },
+                { "key": "time", "value": "10:00" }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Check Doctor Availability (Not Available)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/appointments/doctor-availability?doctorName=Dr. Silva&date=2026-03-10&time=09:00",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["appointments", "doctor-availability"],
+              "query": [
+                { "key": "doctorName", "value": "Dr. Silva" },
+                { "key": "date", "value": "2026-03-10" },
+                { "key": "time", "value": "09:00" }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Check Doctor Availability (Missing Params)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/appointments/doctor-availability?doctorName=Dr. Silva",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["appointments", "doctor-availability"],
+              "query": [{ "key": "doctorName", "value": "Dr. Silva" }]
+            }
+          }
+        },
+        {
+          "name": "Cancel Appointment (Exists)",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/appointments/1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["appointments", "1"]
+            }
+          }
+        },
+        {
+          "name": "Cancel Appointment (Not Found)",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/appointments/999",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["appointments", "999"]
+            }
+          }
+        }
+      ]
     }
   ]
 }
