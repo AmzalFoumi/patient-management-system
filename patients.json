@@ -1,1 +1,25 @@
-[]
+[
+  {
+    "patientID": 1,
+    "name": "John Doe",
+    "NIC": "123456789V",
+    "age": 30,
+    "address": "123 Main St",
+    "previousCaseHistory": [
+      "Flu",
+      "Cold"
+    ],
+    "lastAgeUpdate": "2026-02-23"
+  },
+  {
+    "patientID": 2,
+    "name": "Jane Smith",
+    "NIC": "987654321V",
+    "age": 25,
+    "address": "456 Oak Ave",
+    "previousCaseHistory": [
+      "Asthma"
+    ],
+    "lastAgeUpdate": "2026-02-23"
+  }
+]
