@@ -1,3 +1,35 @@
+// Helper method to Update age for a patient if needed
+function updatePatientAge(patient, today = new Date()) {
+  if (!patient.lastAgeUpdate) return false;
+  const lastUpdate = new Date(patient.lastAgeUpdate);
+  let yearsPassed = today.getFullYear() - lastUpdate.getFullYear();
+  if (
+    yearsPassed > 0 &&
+    (today.getMonth() < lastUpdate.getMonth() ||
+      (today.getMonth() === lastUpdate.getMonth() &&
+        today.getDate() < lastUpdate.getDate()))
+  ) {
+    yearsPassed--;
+  }
+  if (yearsPassed > 0) {
+    patient.age += yearsPassed;
+    patient.lastAgeUpdate = today.toISOString().slice(0, 10);
+    return true;
+  }
+  return false;
+}
+
+// Get a single patient by ID, with age update if a year has passed
+function getPatientById(id, readJSON, writeJSON) {
+  let patients = readJSON("patients.json");
+  const patient = patients.find((p) => p.patientID === id);
+  if (!patient) return null;
+  const today = new Date();
+  if (updatePatientAge(patient, today)) {
+    writeJSON("patients.json", patients);
+  }
+  return patient;
+}
 // patients.js - patient-specific logic
 function addPatient(data, readJSON, writeJSON) {
   const patients = readJSON("patients.json");
@@ -24,22 +56,7 @@ function getAllPatients(readJSON, writeJSON) {
   const today = new Date();
   let updated = false;
   patients.forEach((patient) => {
-    if (!patient.lastAgeUpdate) return;
-    const lastUpdate = new Date(patient.lastAgeUpdate);
-    // Calculate full years passed since lastAgeUpdate
-    let yearsPassed = today.getFullYear() - lastUpdate.getFullYear();
-    // If the current month/day is before the last update month/day, subtract 1
-    if (
-      yearsPassed > 0 &&
-      (today.getMonth() < lastUpdate.getMonth() ||
-        (today.getMonth() === lastUpdate.getMonth() &&
-          today.getDate() < lastUpdate.getDate()))
-    ) {
-      yearsPassed--;
-    }
-    if (yearsPassed > 0) {
-      patient.age += yearsPassed;
-      patient.lastAgeUpdate = today.toISOString().slice(0, 10);
+    if (updatePatientAge(patient, today)) {
       updated = true;
     }
   });
@@ -74,4 +91,5 @@ module.exports = {
   getAllPatients,
   deletePatient,
   changeAddress,
+  getPatientById,
 };

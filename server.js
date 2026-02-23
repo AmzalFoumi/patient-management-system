@@ -36,6 +36,24 @@ const server = http.createServer((req, res) => {
     return;
   }
 
+  // Get a single patient by ID (GET /patients/:id)
+  if (req.method === "GET" && req.url.startsWith("/patients/")) {
+    const parts = req.url.split("/");
+    // Only match /patients/:id (not /patients/:id/address)
+    if (parts.length === 3 && parts[2] && !isNaN(parseInt(parts[2]))) {
+      const id = parseInt(parts[2]);
+      const patient = patients.getPatientById(id, readJSON, writeJSON);
+      if (patient) {
+        res.writeHead(200, { "Content-Type": "application/json" });
+        res.end(JSON.stringify(patient));
+      } else {
+        res.writeHead(404, { "Content-Type": "application/json" });
+        res.end(JSON.stringify({ error: "Patient not found" }));
+      }
+      return;
+    }
+  }
+
   // Get all patients
   if (req.method === "GET" && req.url === "/patients") {
     const allPatients = patients.getAllPatients(readJSON, writeJSON);
